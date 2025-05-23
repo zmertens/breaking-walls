@@ -1,12 +1,12 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/be13537b-f604-447a-beaf-a6d63496fb8e/deploy-status)](https://app.netlify.com/sites/jade-semifreddo-f24ef0/deploys?branch=main)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b118b591-6734-4a33-a7b7-41b934e3c3fd/deploy-status)](https://app.netlify.com/projects/breaking-walls/deploys)
 
 # Breaking Walls
 
 Game with rigid-body physics action in a 2D setting. Balls fly, bounce against walls, and break free towards other players.
 
-![web app](webapp2.jpg)
+![web app](public/screenshot1.png)
 
-Deployed on [Netlify](https://jade-semifreddo-f24ef0.netlify.app/) - distributed securely using `netlify.toml`:
+Deployed on [Netlify](https://breaking-walls.netlify.app/) - distributed securely using `netlify.toml`:
 ```toml
 [[headers]]
   for = "/*"
@@ -17,7 +17,7 @@ Deployed on [Netlify](https://jade-semifreddo-f24ef0.netlify.app/) - distributed
 
 ## Build and Run
 
-JavaScript glue code and files are generated using [Emscripten](https://emscripten.org/index.html) and [https://github.com/zmertens/MazeBuilder?tab=readme-ov-file#cmake](https://github.com/zmertens/MazeBuilder?tab=readme-ov-file#cmake).
+JavaScript glue code and files are generated using [Emscripten](https://emscripten.org/index.html).
 
 In order to spin up the frontend with [Vite](https://vitejs.dev/), the WebAssembly modules must be compiled:
 1. Generate JavaScript and WebAssembly files from [MazeBuilder's C++ codebase](https://github.com/zmertens/MazeBuilder). This is done with Emscripten and CMake.

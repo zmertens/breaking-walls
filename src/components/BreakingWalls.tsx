@@ -7,32 +7,7 @@ const BreakingWalls = () => {
     height: window.innerHeight,
   });
 
-  const [mazeInfo, setMazeInfo] = useState<any | null>(null);
-  const [lastJSONSize, setLastJSONSize] = useState<number>(0);
   const [instance, setInstance] = useState<Physics | null>(null);
-
-  let intervalId = -1;
-
-  // Poll for maze data periodically, look only for last-generated maze
-  const pollForMazeData = (mbi: Physics) => {
-    intervalId = setInterval(async () => {
-      try {
-        if (mbi) {
-          const mazeInfoJson = "";//await mbi.mazes();
-          // Check if the JSON has changed, if so, update the state
-          if (mazeInfoJson.length > 0 && mazeInfoJson.length !== lastJSONSize) {
-            setLastJSONSize(mazeInfoJson.length);
-            const mazeInfo = JSON.parse(mazeInfoJson);
-            setMazeInfo(mazeInfo);
-            clearInterval(intervalId);
-          }
-        }
-      } catch (error) {
-        console.error("Error parsing JSON:", error);
-        clearInterval(intervalId);
-      }
-    }, 1000); // Check every 1 second
-  }; // pollForMazeData
 
   useEffect(() => {
     const canvas = document.querySelector('canvas.emscripten');
@@ -43,13 +18,12 @@ const BreakingWalls = () => {
         height: windowSize.height
       });
       if (activeModule) {
-        // let mbi = activeModule.get();
-        // if (mbi) {
-          // setInstance(mbi);
-          // pollForMazeData(mbi);
-        // } else {
-          // console.error("Failed to create instance");
-        // }
+        let mbi = activeModule.get();
+        if (mbi) {
+          setInstance(mbi);
+        } else {
+          console.error("Failed to create instance");
+        }
       }
     };
 
